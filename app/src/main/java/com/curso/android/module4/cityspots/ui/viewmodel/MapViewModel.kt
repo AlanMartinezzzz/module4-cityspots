@@ -198,5 +198,27 @@ class MapViewModel(
         _errorMessage.value = null
     }
 
+    /**
+    * El ViewModel no sabe cómo se borra la foto (no sabe de archivos .jpg), solo sabe que el repository.deleteSpot se encarga de todo.
+     * * usamos: viewModelScope.launch
+     * Lanzamos el borrado en una corrutina porque el Repository
+     * realizará operaciones de disco y base de datos que son lentas.
+     * * @param spot El spot que el usuario seleccionó para borrar
+     */
+    fun deleteSpot(spot: SpotEntity) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                repository.deleteSpot(spot)
+                // No necesitamos actualizar la lista manualmente porque
+                // 'val spots' ya observa al Flow del repository.
+            } catch (e: Exception) {
+                _errorMessage.value = "Error al eliminar: ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
 
 }

@@ -230,6 +230,11 @@ fun MapScreen(
          */
         var selectedSpot by remember { mutableStateOf<SpotEntity?>(null) }
 
+
+        // Estados para controlar el borrado
+        var showDeleteDialog by remember { mutableStateOf(false) }
+        var spotToDelete by remember { mutableStateOf<SpotEntity?>(null) }
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -241,7 +246,12 @@ fun MapScreen(
                 userLocation = userLocation,
                 cameraPositionState = cameraPositionState,
                 onSpotClick = { spot -> selectedSpot = spot },
-                onMapClick = { selectedSpot = null }
+                onMapClick = { selectedSpot = null },
+                // llenamos
+                onSpotLongClick = { spot ->
+                    spotToDelete = spot
+                    showDeleteDialog = true
+                }
             )
 
             // Card flotante con info del spot seleccionado
@@ -292,7 +302,8 @@ private fun SpotMap(
     userLocation: LatLng?,
     cameraPositionState: CameraPositionState,
     onSpotClick: (SpotEntity) -> Unit,
-    onMapClick: () -> Unit
+    onMapClick: () -> Unit,
+    onSpotLongClick: (SpotEntity) -> Unit // Callback para el clic largo
 ) {
     /**
      * CONCEPTO: MapProperties
