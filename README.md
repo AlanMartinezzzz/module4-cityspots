@@ -1,3 +1,13 @@
+
+Alan Martinez - 24000683
+VIDEO EXPLICATIVO
+https://youtu.be/ppEC89uYG8w
+
+
+
+
+
+
 # City Spots - Módulo 4: Hardware & Maps
 
 Una bitácora visual geolocalizada que permite capturar fotos de lugares y guardarlos con sus coordenadas GPS en un mapa interactivo.
@@ -419,5 +429,6 @@ Este proyecto ha sido generado usando **Claude Code** y adaptado con fines educa
 ---
 
 **Licencia**: Proyecto educativo - Uso libre con atribución
-#   m o d u l e 4 - c i t y s p o t s  
+#   m o d u l e 4 - c i t y s p o t s 
+ 
  
